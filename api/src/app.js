@@ -39,13 +39,4 @@ server.use((err, req, res, next) => {
   res.status(status).send(message);
 });
 
-server.get("/countries", (req, res) => {
-  try {
-    const countries = findAllCountries();
-    res.status(200).send(countries);
-  } catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-}); // obtiene un arreglod e objeto donde cada obj es un pais con toda su info
-
 module.exports = server;

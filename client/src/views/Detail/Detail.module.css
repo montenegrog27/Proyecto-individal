@@ -1,0 +1,28 @@
+.detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  width: 100%;
+  height: 100vh;
+  background-image: url(../../assets/detail.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.volver {
+  color: white;
+  font-size: 40px;
+  text-decoration: none;
+  position: relative;
+  left: -905px;
+  top: -408px;
+  transition: 0.2s;
+}
+.volver:hover {
+  font-size: 45px;
+  transition: 0.2s;
+}
+.detail {
+  position: relative;
+}
