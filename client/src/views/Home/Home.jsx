@@ -7,18 +7,36 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 const Home = () => {
-  const countries = useSelector((state) => state.countries);
   const dispatch = useDispatch();
+
+  const countries = useSelector((state) => state.countries);
+  const selectedContinent = useSelector((state) => state.filtrado);
 
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);
 
+  // Filtrar países por continente seleccionado
+  const filteredCountries = selectedContinent
+    ? countries.filter((country) => country.continent === selectedContinent)
+    : countries;
+
   return (
-    <div className={style.home}>
-      <NavBar />
-      <Cards countries={countries} />
-    </div>
+    <>
+      {/* <div>
+        {filteredCountries.map((country) => (
+          <div key={country.id}>{country.name}</div>
+        ))}
+      </div> */}
+      <div className={style.home}>
+        <NavBar />
+        <Cards
+          countries={
+            filteredCountries.length > 0 ? filteredCountries : countries
+          }
+        />{" "}
+      </div>
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 const GET_COUNTRIES = "GET_COUNTRIES";
 const ERROR_COUNTRIES = "ERROR_COUNTRIES";
+const FILTER_CONTINENT = "FILTER_CONTINENT";
 
 const getCountries = () => {
   return (dispatch) => {
@@ -21,4 +22,15 @@ const getCountries = () => {
   };
 };
 
-export { getCountries, GET_COUNTRIES, ERROR_COUNTRIES };
+const continentFilter = (continent) => ({
+  type: FILTER_CONTINENT,
+  payload: continent,
+});
+
+export {
+  continentFilter,
+  getCountries,
+  GET_COUNTRIES,
+  ERROR_COUNTRIES,
+  FILTER_CONTINENT,
+};
