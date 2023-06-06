@@ -19,8 +19,8 @@ const postCountryFromAPI = async (req, res) => {
       population: ele.population,
     }));
     console.log(response.data);
-    const validCountryData = countryData.filter((data) => data.name !== null);
-    await Country.bulkCreate(validCountryData);
+    const countriesFilter = countryData.filter((data) => data.name !== null);
+    await Country.bulkCreate(countriesFilter);
 
     res.status(200).json({ message: "Objetos guardados en la base de datos." });
   } catch (error) {

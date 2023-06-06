@@ -12,15 +12,15 @@
 }
 .volver {
   color: white;
-  font-size: 40px;
+  font-size: 27px;
   text-decoration: none;
   position: relative;
-  left: -905px;
-  top: -408px;
+  left: -650px;
+  top: -273px;
   transition: 0.2s;
 }
 .volver:hover {
-  font-size: 45px;
+  font-size: 32px;
   transition: 0.2s;
 }
 .detail {

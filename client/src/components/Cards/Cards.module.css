@@ -1,0 +1,10 @@
+.componentes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+  color: rgb(2, 236, 2);
+  align-items: center;
+  padding-left: 20px;
+  padding-top: 0px;
+  margin-top: 40px;
+}
