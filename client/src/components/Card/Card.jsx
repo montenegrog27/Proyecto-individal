@@ -1,7 +1,7 @@
 import style from "./Card.module.css";
 
 function Card(props) {
-  const { id, name, flags, continent } = props;
+  const { name, flags, continent } = props;
   return (
     <div className={style.div}>
       {<img src={flags} alt={""} className={style.imge} />}

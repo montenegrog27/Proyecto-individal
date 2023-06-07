@@ -7,7 +7,7 @@ function NavBar() {
     <>
       <div className={style.barra}>
         <Link to="/" className={style.inicio}>
-          Inicio
+          INICIO
         </Link>
         <Link to="/actividad" className={style.act}>
           Agregar act

@@ -10,29 +10,26 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const countries = useSelector((state) => state.countries);
-  const selectedContinent = useSelector((state) => state.filtrado);
+  const contriesSelect = useSelector((state) => state.filtrado);
 
   useEffect(() => {
     dispatch(getCountries());
-  }, [dispatch]);
+  }, []);
+
+  console.log(contriesSelect);
 
   // Filtrar países por continente seleccionado
-  const filteredCountries = selectedContinent
-    ? countries.filter((country) => country.continent === selectedContinent)
+  const countriesFiltrado = contriesSelect
+    ? countries.filter((country) => country.continent === contriesSelect)
     : countries;
 
   return (
     <>
-      {/* <div>
-        {filteredCountries.map((country) => (
-          <div key={country.id}>{country.name}</div>
-        ))}
-      </div> */}
       <div className={style.home}>
         <NavBar />
         <Cards
           countries={
-            filteredCountries.length > 0 ? filteredCountries : countries
+            countriesFiltrado.length > 0 ? countriesFiltrado : countries
           }
         />{" "}
       </div>

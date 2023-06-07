@@ -8,6 +8,7 @@ function Cards(props) {
       {countries.map((country) => {
         return (
           <Card
+            key={country.ID}
             id={country.ID}
             name={country.name}
             flags={country.flags}
