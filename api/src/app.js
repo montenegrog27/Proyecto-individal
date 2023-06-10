@@ -3,12 +3,15 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index.js");
+const cors = require("cors");
 //? Controladores
 const findAllCountries = require("./controllers/findAllCountries.js");
 
 require("./db.js");
 
 const server = express();
+server.use(cors());
+
 server.use(express.json()); // para que llegue el body
 
 server.name = "API";

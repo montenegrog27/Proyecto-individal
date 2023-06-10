@@ -1,8 +1,7 @@
 .detail {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: red;
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
   width: 100%;
   height: 100vh;
   background-image: url(../../assets/detail.png);
@@ -15,14 +14,41 @@
   font-size: 27px;
   text-decoration: none;
   position: relative;
-  left: -650px;
-  top: -273px;
+  left: -530px;
+  top: -170px;
   transition: 0.2s;
 }
 .volver:hover {
   font-size: 32px;
   transition: 0.2s;
 }
-.detail {
+/* .detail {
   position: relative;
+} */
+.flags {
+  margin-left: 290px;
+  padding-top: 100px;
+  width: 350px;
+  height: 250px;
+}
+.name {
+  font-size: 26px;
+  color: white;
+  margin-right: 450px;
+}
+.continent {
+  font-size: 20px;
+  color: white;
+  margin-right: 450px;
+}
+.activities {
+  position: relative;
+  margin-left: 530px;
+  margin-top: -350px;
+}
+.name,
+.continent,
+.flags {
+  display: block;
+  margin-bottom: 10px; /* Ajusta el margen inferior según tus necesidades */
 }
