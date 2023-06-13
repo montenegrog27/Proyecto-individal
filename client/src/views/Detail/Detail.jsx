@@ -27,7 +27,7 @@ const Detail = () => {
         window.alert("No hay paisessss");
       });
     return setCountry([]);
-  }, []);
+  }, [name]);
 
   return (
     <div className={style.detail}>

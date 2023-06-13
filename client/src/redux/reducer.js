@@ -1,10 +1,9 @@
-import { GET_COUNTRIES } from "./actions";
-import { ERROR_COUNTRIES } from "./actions";
-import { FILTER_CONTINENT } from "./actions";
+import { GET_COUNTRIES, SEARCH_COUNTRIES, SORT_COUNTRIES } from "./actions";
 
 const initialState = {
   countries: [],
   filtrado: [],
+  searchResults: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -15,19 +14,22 @@ const rootReducer = (state = initialState, action) => {
         countries: action.payload,
         error: null,
       };
-    case ERROR_COUNTRIES:
+
+    case SEARCH_COUNTRIES:
+      const searchQuery = action.payload.toLowerCase().trim();
+      const searchResults = state.countries.filter((country) =>
+        country.name.toLowerCase().includes(searchQuery)
+      );
+
       return {
         ...state,
-        countries: [],
-        error: action.payload,
+        searchResults: searchResults,
       };
-
-    case FILTER_CONTINENT:
+    case SORT_COUNTRIES:
       return {
         ...state,
-        filtrado: action.payload,
+        countries: action.payload,
       };
-
     default:
       return { ...state };
   }

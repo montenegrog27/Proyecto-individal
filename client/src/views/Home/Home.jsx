@@ -9,28 +9,19 @@ import { useDispatch } from "react-redux";
 const Home = () => {
   const dispatch = useDispatch();
 
+  const searchResults = useSelector((state) => state.searchResults);
   const countries = useSelector((state) => state.countries);
-  const contriesSelect = useSelector((state) => state.filtrado);
 
   useEffect(() => {
     dispatch(getCountries());
-  }, []);
-
-  console.log(contriesSelect);
-
-  // Filtrar países por continente seleccionado
-  const countriesFiltrado = contriesSelect
-    ? countries.filter((country) => country.continent === contriesSelect)
-    : countries;
+  }, [dispatch, searchResults]);
 
   return (
     <>
       <div className={style.home}>
         <NavBar />
         <Cards
-          countries={
-            countriesFiltrado.length > 0 ? countriesFiltrado : countries
-          }
+          countries={searchResults.length > 0 ? searchResults : countries}
         />{" "}
       </div>
     </>

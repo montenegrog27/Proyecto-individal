@@ -2,7 +2,7 @@ import style from "./Card.module.css";
 import { Link } from "react-router-dom";
 
 function Card(props) {
-  const { id, name, flags, continent } = props;
+  const { name, flags, continent } = props;
   return (
     <div className={style.div}>
       <Link to={`/countries?name=${name}`}>
