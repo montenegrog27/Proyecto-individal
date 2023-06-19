@@ -1,10 +1,9 @@
 import style from "./Home.module.css";
 import Cards from "../../components/Cards/Cards";
 import NavBar from "../../components/NavBar/NavBar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getCountries } from "../../redux/actions";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -22,7 +21,7 @@ const Home = () => {
         <NavBar />
         <Cards
           countries={searchResults.length > 0 ? searchResults : countries}
-        />{" "}
+        />
       </div>
     </>
   );

@@ -1,26 +1,45 @@
 import style from "./SearchBar.module.css";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { searchCountries, sortCountries } from "../../redux/actions"; // Añade la acción para ordenar
+import { searchCountries } from "../../redux/actions"; // Añade la acción para ordenar
+import { sortCountriesAlf } from "../../redux/actions";
+import { sortCountriesPopulation } from "../../redux/actions";
+import { borrarTodo } from "../../redux/actions";
+import { filterByContinent } from "../../redux/actions";
 
 function SearchBar() {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortAlphabetically, setSortAlphabetically] = useState("A-Z"); // Estado para el orden alfabético
-  const [sortPopulation, setSortPopulation] = useState("Ascendente"); // Estado para el orden por población
+  const [selectedContinent, setSelectedContinent] = useState("");
+
+  const handleContinentChange = (e) => {
+    const continent = e.target.value;
+    setSelectedContinent(continent);
+    dispatch(filterByContinent(continent));
+  };
 
   const handleSearch = () => {
     dispatch(searchCountries(searchQuery));
+    dispatch(sortCountriesAlf("A-Z")); // Ordenar alfabéticamente por defecto
   };
 
-  const handleSortAlphabetically = (e) => {
-    setSortAlphabetically(e.target.value);
-    dispatch(sortCountries(sortAlphabetically, sortPopulation)); // Dispatch la acción de ordenar
+  const handleSortChange = (e) => {
+    const sortType = e.target.value;
+    dispatch(sortCountriesAlf(sortType));
   };
 
-  const handleSortPopulation = (e) => {
-    setSortPopulation(e.target.value);
-    dispatch(sortCountries(sortAlphabetically, sortPopulation)); // Dispatch la acción de ordenar
+  const handleSortChangePopu = (e) => {
+    const sortPopu = e.target.value;
+    dispatch(sortCountriesPopulation(sortPopu));
+  };
+  //limpiar busqeuda
+  const limpiarBusqueda = () => {
+    setSearchQuery("");
+    setSelectedContinent("");
+  };
+  const borrado = () => {
+    dispatch(borrarTodo());
+    limpiarBusqueda();
   };
 
   return (
@@ -30,11 +49,7 @@ function SearchBar() {
           <label className={style.labelSortA} htmlFor="ordenar">
             Orden Alfabético:
           </label>
-          <select
-            className={style.selectSortA}
-            value={sortAlphabetically}
-            onChange={handleSortAlphabetically}
-          >
+          <select className={style.selectSortA} onChange={handleSortChange}>
             <option value="A-Z">A-Z</option>
             <option value="Z-A">Z-A</option>
           </select>
@@ -44,11 +59,7 @@ function SearchBar() {
           <label className={style.labelSortP} htmlFor="">
             Orden Población:
           </label>
-          <select
-            className={style.selectSortP}
-            value={sortPopulation}
-            onChange={handleSortPopulation}
-          >
+          <select className={style.selectSortP} onChange={handleSortChangePopu}>
             <option value="Ascendente">Ascendente</option>
             <option value="Descendente">Descendente</option>
           </select>
@@ -58,7 +69,13 @@ function SearchBar() {
           <label className={style.labelFilter} htmlFor="">
             Filtrar por continente:
           </label>
-          <select className={style.selectFilter} id="continent">
+          <select
+            className={style.selectFilter}
+            id="continent"
+            value={selectedContinent}
+            onChange={handleContinentChange}
+          >
+            {" "}
             <option value="">Todos</option>
             <option value="Africa">Africa</option>
             <option value="Americas">Americas</option>
@@ -77,7 +94,9 @@ function SearchBar() {
           </select>
         </div>
         <div>
-          <button className={style.button2}>Borrar Filtros</button>
+          <button className={style.button2} onClick={borrado}>
+            Borrar Filtros
+          </button>
         </div>
       </div>
 
