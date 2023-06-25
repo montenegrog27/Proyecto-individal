@@ -1,0 +1,69 @@
+.activityForm {
+  background-color: rgba(0, 0, 0, 0.384);
+  width: 400px;
+  height: 500px;
+  border-radius: 30px;
+  padding: 15px;
+  position: relative;
+  margin-left: 15%;
+  margin-top: 20px;
+}
+.h2 {
+  color: rgba(255, 255, 255, 0.932);
+}
+.button1 {
+  font-size: large;
+  margin-right: 20px;
+}
+.name {
+  color: rgba(255, 255, 255, 0.932);
+
+  font-size: large;
+  margin-right: 20px;
+}
+.name2 {
+  width: 250px;
+  height: 30px;
+}
+.difficulty {
+  color: rgba(255, 255, 255, 0.932);
+
+  font-size: large;
+  margin-right: 20px;
+}
+
+.difficultyInput {
+  width: 250px;
+  height: 30px;
+  cursor: pointer;
+}
+.duration {
+  color: rgba(255, 255, 255, 0.932);
+
+  font-size: large;
+  margin-right: 20px;
+}
+.durationInput {
+  width: 250px;
+  height: 30px;
+}
+.season {
+  color: rgba(255, 255, 255, 0.932);
+
+  font-size: large;
+  margin-right: 20px;
+}
+.seasonInput {
+  width: 250px;
+  height: 30px;
+}
+.countries {
+  color: rgba(255, 255, 255, 0.932);
+
+  font-size: large;
+  margin-right: 20px;
+}
+.countriesInput {
+  width: 250px;
+  height: 30px;
+}

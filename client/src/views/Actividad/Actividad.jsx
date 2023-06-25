@@ -77,10 +77,13 @@ function ActivityForm() {
 
   return (
     <form className={style.activityForm} onSubmit={submitHandler}>
-      <h2>Nueva Actividad</h2>
+      <h2 className={style.h2}>Nueva Actividad</h2>
       <div>
-        <label htmlFor="name">Nombre:</label>
+        <label className={style.name} htmlFor="name">
+          Nombre:
+        </label>
         <input
+          className={style.name2}
           type="text"
           name="name"
           value={form.name}
@@ -89,9 +92,12 @@ function ActivityForm() {
       </div>
 
       <div>
-        <label htmlFor="difficulty">Dificultad:</label>
+        <label className={style.difficulty} htmlFor="difficulty">
+          Dificultad:
+        </label>
         <input
-          type="number"
+          className={style.difficultyInput}
+          type="range"
           id="difficulty"
           name="difficulty"
           min="1"
@@ -101,9 +107,12 @@ function ActivityForm() {
         />
       </div>
 
-      <div>
-        <label htmlFor="duration">duracion:</label>
+      <div className={style.button}>
+        <label className={style.duration} htmlFor="duration">
+          Duracion:
+        </label>
         <input
+          className={style.durationInput}
           type="number"
           name="duration"
           min="1"
@@ -115,8 +124,11 @@ function ActivityForm() {
       </div>
 
       <div>
-        {/* <label htmlFor="season">Season:</label> */}
+        <label className={style.season} htmlFor="season">
+          Estacion:
+        </label>
         <select
+          className={style.seasonInput}
           // id="season"
           // value={form.season}
           onChange={handleChangeSeason}
@@ -129,8 +141,11 @@ function ActivityForm() {
         </select>
       </div>
 
+      <label className={style.countries} htmlFor="season">
+        Paises:
+      </label>
       <select
-        className=""
+        className={style.countriesInput}
         value={selected}
         onChange={(event) => [handleCountries(event), setSelected(event)]}
       >
@@ -142,9 +157,9 @@ function ActivityForm() {
       <div>
         {form.countries.map((country) => {
           return (
-            <div className="" key={country}>
+            <div key={country}>
               <p>{country}</p>
-              <button className="" onClick={deleteCountry} value={country}>
+              <button onClick={deleteCountry} value={country}>
                 {" "}
                 X{" "}
               </button>
@@ -152,9 +167,10 @@ function ActivityForm() {
           );
         })}
       </div>
-      {console.log(form)}
 
-      <button type="submit">Guardar</button>
+      <button className={style.button1} type="submit">
+        Agregar Actividad
+      </button>
     </form>
   );
 }
