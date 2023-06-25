@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style from "./Actividad.module.css";
+import { Link } from "react-router-dom";
 
 function ActivityForm() {
   const [form, setForm] = useState({
     name: "",
-    difficulty: "",
+    difficulty: 1,
     duration: "",
     season: "",
     countries: [],
@@ -35,11 +36,11 @@ function ActivityForm() {
       .then((response) => response.json())
       .then((data) => {
         console.log("Actividad guardada:", data);
-        // Realizar acciones adicionales después de guardar la actividad
+        window.alert("La actividad se creó correctamente.");
       })
       .catch((error) => {
         console.error("Ocurrió un error al guardar la actividad:", error);
-        // Manejar el error de forma adecuada
+        window.alert("Ocurrió un error al guardar la actividad.");
       });
   }
   const handleChangeSeason = (event) => {
@@ -76,102 +77,107 @@ function ActivityForm() {
   };
 
   return (
-    <form className={style.activityForm} onSubmit={submitHandler}>
-      <h2 className={style.h2}>Nueva Actividad</h2>
-      <div>
-        <label className={style.name} htmlFor="name">
-          Nombre:
-        </label>
-        <input
-          className={style.name2}
-          type="text"
-          name="name"
-          value={form.name}
-          onChange={handleChange}
-        />
-      </div>
+    <>
+      <Link to="/home" className={style.volver}>
+        Home
+      </Link>
+      <form className={style.activityForm} onSubmit={submitHandler}>
+        <h2 className={style.h2}>Nueva Actividad</h2>
+        <div>
+          <label className={style.name} htmlFor="name">
+            Nombre:
+          </label>
+          <input
+            className={style.name2}
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+          />
+        </div>
 
-      <div>
-        <label className={style.difficulty} htmlFor="difficulty">
-          Dificultad:
-        </label>
-        <input
-          className={style.difficultyInput}
-          type="range"
-          id="difficulty"
-          name="difficulty"
-          min="1"
-          max="5"
-          value={form.difficulty}
-          onChange={handleChange}
-        />
-      </div>
+        <div>
+          <label className={style.difficulty} htmlFor="difficulty">
+            Dificultad:
+          </label>
+          <input
+            className={style.difficultyInput}
+            type="range"
+            id="difficulty"
+            name="difficulty"
+            min="1"
+            max="5"
+            value={form.difficulty}
+            onChange={handleChange}
+          />
+        </div>
 
-      <div className={style.button}>
-        <label className={style.duration} htmlFor="duration">
-          Duracion:
-        </label>
-        <input
-          className={style.durationInput}
-          type="number"
-          name="duration"
-          min="1"
-          max="5"
-          id="duration"
-          value={form.duration}
-          onChange={handleChange}
-        ></input>
-      </div>
+        <div className={style.button}>
+          <label className={style.duration} htmlFor="duration">
+            Duracion:
+          </label>
+          <input
+            className={style.durationInput}
+            type="number"
+            name="duration"
+            min="1"
+            max="5"
+            id="duration"
+            value={form.duration}
+            onChange={handleChange}
+          ></input>
+        </div>
 
-      <div>
-        <label className={style.season} htmlFor="season">
-          Estacion:
+        <div>
+          <label className={style.season} htmlFor="season">
+            Estacion:
+          </label>
+          <select
+            className={style.seasonInput}
+            // id="season"
+            // value={form.season}
+            onChange={handleChangeSeason}
+            // required
+          >
+            <option value="Verano">Verano</option>
+            <option value="Otoño">Otoño</option>
+            <option value="Invierno">Invierno</option>
+            <option value="Primavera">Primavera</option>
+          </select>
+        </div>
+
+        <label className={style.countries} htmlFor="season">
+          Paises:
         </label>
         <select
-          className={style.seasonInput}
-          // id="season"
-          // value={form.season}
-          onChange={handleChangeSeason}
-          // required
+          className={style.countriesInput}
+          value={selected}
+          onChange={(event) => [handleCountries(event), setSelected(event)]}
         >
-          <option value="Verano">Verano</option>
-          <option value="Otoño">Otoño</option>
-          <option value="Invierno">Invierno</option>
-          <option value="Primavera">Primavera</option>
+          <option>Select Country</option>
+          {TodosCountries?.map((country) => {
+            return <option key={country.name}>{country.name}</option>;
+          })}
         </select>
-      </div>
+        <div>
+          {form.countries.map((country) => {
+            return (
+              <div key={country}>
+                <p>{country}</p>
+                <button onClick={deleteCountry} value={country}>
+                  {" "}
+                  X{" "}
+                </button>
+              </div>
+            );
+          })}
+        </div>
 
-      <label className={style.countries} htmlFor="season">
-        Paises:
-      </label>
-      <select
-        className={style.countriesInput}
-        value={selected}
-        onChange={(event) => [handleCountries(event), setSelected(event)]}
-      >
-        <option>Select Country</option>
-        {TodosCountries?.map((country) => {
-          return <option key={country.name}>{country.name}</option>;
-        })}
-      </select>
-      <div>
-        {form.countries.map((country) => {
-          return (
-            <div key={country}>
-              <p>{country}</p>
-              <button onClick={deleteCountry} value={country}>
-                {" "}
-                X{" "}
-              </button>
-            </div>
-          );
-        })}
-      </div>
-
-      <button className={style.button1} type="submit">
-        Agregar Actividad
-      </button>
-    </form>
+        <button className={style.button1} type="submit">
+          Agregar Actividad
+        </button>
+      </form>
+    </>
   );
 }
 

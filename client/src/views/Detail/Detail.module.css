@@ -1,54 +1,106 @@
 .detail {
-  /* display: flex; */
-  /* justify-content: center;
-  align-items: center; */
   width: 100%;
   height: 100vh;
-  background-image: url(../../assets/detail.png);
+  /* background-image: url(../../assets/detail.png); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 .volver {
+  display: block;
   color: white;
   font-size: 27px;
   text-decoration: none;
-  position: relative;
-  left: -530px;
-  top: -170px;
+  position: absolute;
+  top: 20px;
+  left: 70px;
   transition: 0.2s;
+  background-color: rgb(0, 132, 255);
+  width: 150px;
+  height: 50px;
+  border-radius: 70% 10px 10px 70%;
+  padding-top: 10px;
 }
+
 .volver:hover {
-  font-size: 32px;
+  font-size: 30px;
   transition: 0.2s;
+  background-color: rgba(0, 132, 255, 0.678);
+  padding-bottom: 7px;
 }
-/* .detail {
-  position: relative;
-} */
+
 .flags {
-  margin-left: 290px;
-  padding-top: 100px;
   width: 350px;
   height: 250px;
 }
 .name {
-  font-size: 26px;
+  font-size: 36px;
   color: white;
-  margin-right: 450px;
 }
 .continent {
   font-size: 20px;
   color: white;
-  margin-right: 450px;
+}
+.poblation {
+  font-size: 20px;
+  color: white;
 }
 .activities {
+  border-radius: 20px;
+  background-color: rgb(117, 117, 117);
+  width: 300px;
   position: relative;
-  margin-left: 530px;
-  margin-top: -350px;
+  margin-left: 817px;
+  margin-top: -450px;
+  padding-bottom: 10px;
 }
+.activities1 {
+  color: white;
+}
+.actividades {
+  background-color: rgb(85, 85, 85);
+  color: white;
+  border-radius: 20px;
+  width: 250px;
+  height: 50px;
+  font-size: 30px;
+  position: absolute;
+  margin-top: -500px;
+  margin-left: 850px;
+}
+
+.contentFlag {
+  background-color: rgb(85, 85, 85);
+  width: 400px;
+  margin-left: 250px;
+  height: 500px;
+  margin-top: 60px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+.noAct {
+  font-size: larger;
+  color: white;
+}
+
 .name,
 .continent,
-.flags {
+.flags,
+.poblation {
   display: block;
-  margin-bottom: 10px; /* Ajusta el margen inferior según tus necesidades */
+  margin-bottom: 5px;
+  text-align: center;
+}
+.continent,
+.poblation {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(46, 46, 46);
+  border-radius: 10px;
+  width: 300px;
 }

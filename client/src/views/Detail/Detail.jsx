@@ -31,18 +31,32 @@ const Detail = () => {
 
   return (
     <div className={style.detail}>
-      <div>
-        <img className={style.flags} src={country.flags} alt="imagen" />
+      <Link to="/home" className={style.volver}>
+        VOLVER
+      </Link>
+
+      <div className={style.contentFlag}>
+        <div>
+          <img className={style.flags} src={country.flags} alt="imagen" />
+        </div>
+
+        <div className={style.name}>{country.name}</div>
+
+        <div className={style.poblation}>
+          <p>Poblacion:</p>
+          {country.population}
+        </div>
+        <div className={style.continent}>
+          <p>Continente:</p>
+          {country.continent}
+        </div>
       </div>
 
-      <div className={style.name}>{country.name}</div>
-
-      <div className={style.continent}>{country.continent}</div>
-
+      <p className={style.actividades}>Actividades</p>
       <div className={style.activities}>
         {Array.isArray(country.Activities) && country.Activities.length > 0 ? (
           country.Activities.map((activity) => (
-            <div key={activity.name}>
+            <div className={style.activities1} key={activity.name}>
               <h3>{activity.name}</h3>
               <p>Difficulty: {activity.difficulty}</p>
               <p>Duration: {activity.duration}</p>
@@ -50,13 +64,9 @@ const Detail = () => {
             </div>
           ))
         ) : (
-          <p>No hay actividades disponibles</p>
+          <p className={style.noAct}>No hay actividades disponibles</p>
         )}
       </div>
-
-      <Link to="/home" className={style.volver}>
-        VOLVER
-      </Link>
     </div>
   );
 };
