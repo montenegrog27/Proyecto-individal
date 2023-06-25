@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import style from "./Actividad.module.css";
 
 function ActivityForm() {
@@ -7,9 +8,12 @@ function ActivityForm() {
     difficulty: "",
     duration: "",
     season: "",
-    countries: "",
+    countries: [],
   });
 
+  const [selected, setSelected] = useState();
+
+  const TodosCountries = useSelector((state) => state.countries);
   const handleChange = (event) => {
     event.preventDefault();
     const property = event.target.name;
@@ -38,6 +42,39 @@ function ActivityForm() {
         // Manejar el error de forma adecuada
       });
   }
+  const handleChangeSeason = (event) => {
+    setForm({ ...form, season: event.target.value });
+  };
+
+  const handleCountries = (event) => {
+    if (
+      event.target.value !== "Select Country" &&
+      !form.countries.includes(event.target.value)
+    ) {
+      setForm({
+        ...form,
+        countries: [...form.countries, event.target.value],
+      });
+      // setErrors(validation({
+      //     ...form,
+      //     countries: [...form.countries, event.target.value]
+      // }))
+    }
+  };
+
+  const deleteCountry = (event) => {
+    setForm({
+      ...form,
+      countries: form.countries.filter(
+        (country) => country !== event.target.value
+      ),
+    });
+    // setErrors(validation({
+    //     ...form,
+    //     countries: form.countries.filter((country) => country !== event.target.value)
+    // }))
+  };
+
   return (
     <form className={style.activityForm} onSubmit={submitHandler}>
       <h2>Nueva Actividad</h2>
@@ -78,12 +115,12 @@ function ActivityForm() {
       </div>
 
       <div>
-        <label htmlFor="season">Season:</label>
+        {/* <label htmlFor="season">Season:</label> */}
         <select
-          id="season"
-          value={form.season}
-          onChange={handleChange}
-          required
+          // id="season"
+          // value={form.season}
+          onChange={handleChangeSeason}
+          // required
         >
           <option value="Verano">Verano</option>
           <option value="Otoño">Otoño</option>
@@ -92,16 +129,30 @@ function ActivityForm() {
         </select>
       </div>
 
+      <select
+        className=""
+        value={selected}
+        onChange={(event) => [handleCountries(event), setSelected(event)]}
+      >
+        <option>Select Country</option>
+        {TodosCountries?.map((country) => {
+          return <option key={country.name}>{country.name}</option>;
+        })}
+      </select>
       <div>
-        <label htmlFor="countries">paises:</label>
-        <input
-          type="text"
-          name="countries"
-          id="countries"
-          value={form.countries}
-          onChange={handleChange}
-        ></input>
+        {form.countries.map((country) => {
+          return (
+            <div className="" key={country}>
+              <p>{country}</p>
+              <button className="" onClick={deleteCountry} value={country}>
+                {" "}
+                X{" "}
+              </button>
+            </div>
+          );
+        })}
       </div>
+      {console.log(form)}
 
       <button type="submit">Guardar</button>
     </form>

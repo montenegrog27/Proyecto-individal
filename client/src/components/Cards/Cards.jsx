@@ -3,6 +3,7 @@ import Card from "../Card/Card";
 
 function Cards(props) {
   const { countries } = props;
+
   return (
     <div className={style.componentes}>
       {countries.map((country) => {

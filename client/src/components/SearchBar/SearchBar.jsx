@@ -6,11 +6,15 @@ import { sortCountriesAlf } from "../../redux/actions";
 import { sortCountriesPopulation } from "../../redux/actions";
 import { borrarTodo } from "../../redux/actions";
 import { filterByContinent } from "../../redux/actions";
+import { useSelector } from "react-redux";
 
 function SearchBar() {
   const dispatch = useDispatch();
+  const noencontrado = useSelector((state) => state.noResultsFound);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedContinent, setSelectedContinent] = useState("");
+  const [OrdenamientoAlf, setOrdenamientoAlf] = useState("");
+  const [OrdenamientoPopu, setOrdenamientoPopu] = useState("");
 
   const handleContinentChange = (e) => {
     const continent = e.target.value;
@@ -21,21 +25,30 @@ function SearchBar() {
   const handleSearch = () => {
     dispatch(searchCountries(searchQuery));
     dispatch(sortCountriesAlf("A-Z")); // Ordenar alfabéticamente por defecto
+    if (noencontrado) {
+      window.alert("No se encontro Pais!");
+    }
   };
 
   const handleSortChange = (e) => {
     const sortType = e.target.value;
+    setOrdenamientoAlf(sortType);
     dispatch(sortCountriesAlf(sortType));
   };
 
   const handleSortChangePopu = (e) => {
     const sortPopu = e.target.value;
+    setOrdenamientoPopu(sortPopu);
+
     dispatch(sortCountriesPopulation(sortPopu));
   };
+
   //limpiar busqeuda
   const limpiarBusqueda = () => {
     setSearchQuery("");
     setSelectedContinent("");
+    setOrdenamientoAlf("");
+    setOrdenamientoPopu("");
   };
   const borrado = () => {
     dispatch(borrarTodo());
@@ -49,7 +62,11 @@ function SearchBar() {
           <label className={style.labelSortA} htmlFor="ordenar">
             Orden Alfabético:
           </label>
-          <select className={style.selectSortA} onChange={handleSortChange}>
+          <select
+            className={style.selectSortA}
+            onChange={handleSortChange}
+            value={OrdenamientoAlf}
+          >
             <option value="A-Z">A-Z</option>
             <option value="Z-A">Z-A</option>
           </select>
@@ -59,7 +76,11 @@ function SearchBar() {
           <label className={style.labelSortP} htmlFor="">
             Orden Población:
           </label>
-          <select className={style.selectSortP} onChange={handleSortChangePopu}>
+          <select
+            className={style.selectSortP}
+            onChange={handleSortChangePopu}
+            value={OrdenamientoPopu}
+          >
             <option value="Ascendente">Ascendente</option>
             <option value="Descendente">Descendente</option>
           </select>

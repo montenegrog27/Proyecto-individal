@@ -12,6 +12,8 @@ const initialState = {
   searchResults: [],
   filterContinent: [],
   filterActivity: [],
+  ordenamiento: [],
+  noResultsFound: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -28,11 +30,18 @@ const rootReducer = (state = initialState, action) => {
       const searchResults = state.countries.filter((country) =>
         country.name.toLowerCase().includes(searchQuery)
       );
+      if (searchResults > 0) {
+        return {
+          ...state,
+          searchResults: searchResults,
+        };
+      } else
+        return {
+          ...state,
+          searchResults: searchResults,
 
-      return {
-        ...state,
-        searchResults: searchResults,
-      };
+          noResultsFound: true,
+        };
 
     //! filtro continente
     case FILTER_BY_CONTINENT:
@@ -56,32 +65,47 @@ const rootReducer = (state = initialState, action) => {
 
     case SORT_ALFABETIC:
       let sortedCountries;
-
+      let countriesSort;
       if (action.payload === "A-Z") {
+        countriesSort = [
+          ...state.countries.sort((a, b) => a.name.localeCompare(b.name)),
+        ];
         sortedCountries = [...state.searchResults].sort((a, b) =>
           a.name.localeCompare(b.name)
         );
       } else if (action.payload === "Z-A") {
+        countriesSort = [
+          ...state.countries.sort((a, b) => b.name.localeCompare(a.name)),
+        ];
+
         sortedCountries = [...state.searchResults].sort((a, b) =>
           b.name.localeCompare(a.name)
         );
-      } else {
-        sortedCountries = state.searchResults;
       }
 
       return {
         ...state,
         searchResults: sortedCountries,
+        ordenamiento: countriesSort,
       };
 
     //! orden popu
     case SORT_POPULATION:
       let sortedPopulations;
+      let countriesSortPopu;
       if (action.payload === "Ascendente") {
+        countriesSortPopu = [...state.countries].sort(
+          (a, b) => a.population - b.population
+        );
+
         sortedPopulations = [...state.searchResults].sort(
           (a, b) => a.population - b.population
         );
       } else if (action.payload === "Descendente") {
+        countriesSortPopu = [...state.countries].sort(
+          (a, b) => b.population - a.population
+        );
+
         sortedPopulations = [...state.searchResults].sort(
           (a, b) => b.population - a.population
         );
@@ -91,15 +115,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         searchResults: sortedPopulations,
+        ordenamiento: countriesSortPopu,
       };
 
     //! borrar todos los filtros
     case BORRAR_FILTROS:
       return {
+        ...state,
         countries: [],
-        filterContinent: [],
-        filterActivity: [],
         searchResults: [],
+        ordenamiento: [],
       };
 
     default:

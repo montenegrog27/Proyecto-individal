@@ -10,18 +10,26 @@ const Home = () => {
 
   const searchResults = useSelector((state) => state.searchResults);
   const countries = useSelector((state) => state.countries);
-
+  const ordenamiento = useSelector((state) => state.ordenamiento);
   useEffect(() => {
     dispatch(getCountries());
-  }, [dispatch, searchResults]);
+  }, [dispatch]);
+
+  let renderedCountries;
+
+  if (searchResults.length > 0) {
+    renderedCountries = searchResults;
+  } else if (ordenamiento.length > 0) {
+    renderedCountries = ordenamiento;
+  } else {
+    renderedCountries = countries;
+  }
 
   return (
     <>
       <div className={style.home}>
         <NavBar />
-        <Cards
-          countries={searchResults.length > 0 ? searchResults : countries}
-        />
+        <Cards countries={renderedCountries} />
       </div>
     </>
   );

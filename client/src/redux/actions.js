@@ -41,9 +41,12 @@ const sortCountriesPopulation = (sortType) => ({
   payload: sortType,
 });
 
-const borrarTodo = () => ({
-  type: BORRAR_FILTROS,
-});
+const borrarTodo = () => {
+  return (dispatch) => {
+    dispatch({ type: BORRAR_FILTROS });
+    dispatch(getCountries());
+  };
+};
 
 const filterByContinent = (continent) => ({
   type: FILTER_BY_CONTINENT,
