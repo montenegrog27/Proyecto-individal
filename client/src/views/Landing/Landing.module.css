@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Ruda Black";
+  src: url("../../assets/Ruda/static/Ruda-Black.ttf") format("truetype");
+}
+
 .landing {
   display: flex;
   justify-content: center;
@@ -11,6 +16,7 @@
 }
 
 .ingresar {
+  font-family: "Ruda Black";
   color: white;
   font-size: 40px;
   padding: 25px 55px 25px 55px;

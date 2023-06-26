@@ -1,15 +1,30 @@
+@font-face {
+  font-family: "Ruda Black";
+  src: url("../../assets/Ruda/static/Ruda-Black.ttf") format("truetype");
+}
+
 .imge {
   width: 60%;
   height: 60%;
   object-fit: contain;
+}
+.name,
+.continent {
+  font-family: "Ruda Black";
+}
+.continent {
+  font-size: 15px;
+}
+.name {
+  font-size: 18px;
 }
 
 .div {
   color: rgb(216, 216, 216);
   background-color: rgb(46, 46, 46);
   border-radius: 30px;
-  height: 240px;
-  width: 250px;
-  font-size: 8px;
-  font-family: Verdana;
+  height: 250px;
+  width: 245px;
+  /* font-size: 8px; */
+  /* font-family: Verdana; */
 }

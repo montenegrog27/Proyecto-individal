@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "Ruda Black";
+  src: url("../../assets/Ruda/static/Ruda-Black.ttf") format("truetype");
+}
 .detail {
   width: 100%;
   height: 100vh;
@@ -7,6 +11,7 @@
   background-repeat: no-repeat;
 }
 .volver {
+  font-family: "Ruda Black";
   display: block;
   color: white;
   font-size: 27px;
@@ -34,6 +39,8 @@
   height: 250px;
 }
 .name {
+  font-family: "Ruda Black";
+
   font-size: 36px;
   color: white;
 }
@@ -58,6 +65,8 @@
   color: white;
 }
 .actividades {
+  font-family: "Ruda Black";
+
   background-color: rgb(85, 85, 85);
   color: white;
   border-radius: 20px;

@@ -1,10 +1,60 @@
+@font-face {
+  font-family: "Ruda Black";
+  src: url("../../assets/Ruda/static/Ruda-Black.ttf") format("truetype");
+}
 .componentes {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
   color: rgb(2, 236, 2);
   align-items: center;
-  padding-left: 20px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
   padding-top: 0px;
   margin-top: 40px;
+}
+.pagination {
+  font-family: "Ruda Black", "Helvetica";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: rgba(0, 78, 167, 0.514);
+  width: 350px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  height: 44px;
+  border-radius: 20px;
+  border: rgb(2, 67, 153) solid 2px;
+}
+
+.prevButton,
+.nextButton,
+.pageButton {
+  font-family: "Ruda Black", "Helvetica";
+  color: white;
+  background-color: rgb(0, 119, 255);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.prevButton:hover,
+.nextButton:hover,
+.pageButton:hover {
+  color: white;
+  background-color: rgb(0, 88, 189);
+}
+
+.pageButton.active {
+  font-weight: bold;
+  color: white;
+  background-color: rgb(0, 119, 255);
+
+  font-size: 25px;
 }

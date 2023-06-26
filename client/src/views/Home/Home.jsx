@@ -11,10 +11,10 @@ const Home = () => {
   const searchResults = useSelector((state) => state.searchResults);
   const countries = useSelector((state) => state.countries);
   const ordenamiento = useSelector((state) => state.ordenamiento);
+
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);
-
   let renderedCountries;
 
   if (searchResults.length > 0) {
