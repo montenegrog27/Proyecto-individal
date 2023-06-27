@@ -51,6 +51,7 @@ router.get("/countries/:id", async (req, res) => {
 router.get("/countries", async (req, res) => {
   const { name } = req.query;
   const lowercaseName = name ? name.toLowerCase() : null;
+  const lowercaseActivity = activity ? activity.toLowerCase() : null;
   try {
     const countries = lowercaseName
       ? await findCountriesByName({

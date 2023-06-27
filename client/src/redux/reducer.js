@@ -5,6 +5,7 @@ import {
   SORT_POPULATION,
   BORRAR_FILTROS,
   FILTER_BY_CONTINENT,
+  FILTER_BY_ACTIVITY,
 } from "./actions";
 
 const initialState = {
@@ -22,7 +23,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         countries: action.payload,
-        error: null,
+        // error: null,
       };
 
     case SEARCH_COUNTRIES:
@@ -39,7 +40,6 @@ const rootReducer = (state = initialState, action) => {
         return {
           ...state,
           searchResults: searchResults,
-
           noResultsFound: true,
         };
 
@@ -59,6 +59,22 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         searchResults: filteredResults,
+      };
+    case FILTER_BY_ACTIVITY:
+      const activity = action.payload;
+      let filteredResultsAct;
+
+      if (activity === "") {
+        filteredResultsAct = state.countries;
+      } else {
+        filteredResultsAct = state.countries.filter((country) =>
+          country.activities.some((act) => act.name === activity)
+        );
+      }
+
+      return {
+        ...state,
+        searchResults: filteredResultsAct,
       };
 
     //! orden alfabetico

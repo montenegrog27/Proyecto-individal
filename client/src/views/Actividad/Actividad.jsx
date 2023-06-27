@@ -39,7 +39,7 @@ function ActivityForm() {
         window.alert("La actividad se creó correctamente.");
       })
       .catch((error) => {
-        console.error("Ocurrió un error al guardar la actividad:", error);
+        console.log("Ocurrió un error al guardar la actividad:", error);
         window.alert("Ocurrió un error al guardar la actividad.");
       });
   }
@@ -132,13 +132,7 @@ function ActivityForm() {
           <label className={style.season} htmlFor="season">
             Estacion:
           </label>
-          <select
-            className={style.seasonInput}
-            // id="season"
-            // value={form.season}
-            onChange={handleChangeSeason}
-            // required
-          >
+          <select className={style.seasonInput} onChange={handleChangeSeason}>
             <option value="Verano">Verano</option>
             <option value="Otoño">Otoño</option>
             <option value="Invierno">Invierno</option>

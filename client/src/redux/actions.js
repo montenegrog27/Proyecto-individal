@@ -6,6 +6,7 @@ const SORT_ALFABETIC = "SORT_ALFABETIC";
 const SORT_POPULATION = "SORT_POPULATION";
 const BORRAR_FILTROS = "BORRAR_FILTROS";
 const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
+const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
 
 const getCountries = () => {
   return (dispatch) => {
@@ -25,6 +26,10 @@ const getCountries = () => {
       });
   };
 };
+const filterByActivity = (activity) => ({
+  type: FILTER_BY_ACTIVITY,
+  payload: activity,
+});
 
 const searchCountries = (query) => ({
   type: SEARCH_COUNTRIES,
@@ -60,6 +65,8 @@ export {
   sortCountriesAlf,
   filterByContinent,
   sortCountriesPopulation,
+  filterByActivity,
+  FILTER_BY_ACTIVITY,
   FILTER_BY_CONTINENT,
   GET_COUNTRIES,
   SEARCH_COUNTRIES,

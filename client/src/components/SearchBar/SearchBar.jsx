@@ -7,6 +7,7 @@ import { sortCountriesPopulation } from "../../redux/actions";
 import { borrarTodo } from "../../redux/actions";
 import { filterByContinent } from "../../redux/actions";
 import { useSelector } from "react-redux";
+import { filterByActivity } from "../../redux/actions";
 
 function SearchBar() {
   const dispatch = useDispatch();
@@ -15,6 +16,13 @@ function SearchBar() {
   const [selectedContinent, setSelectedContinent] = useState("");
   const [OrdenamientoAlf, setOrdenamientoAlf] = useState("");
   const [OrdenamientoPopu, setOrdenamientoPopu] = useState("");
+  const [selectedActivity, setSelectedActivity] = useState("");
+
+  const handleActivityChange = (e) => {
+    const activity = e.target.value;
+    setSelectedActivity(activity);
+    dispatch(filterByActivity(activity));
+  };
 
   const handleContinentChange = (e) => {
     const continent = e.target.value;
@@ -110,8 +118,17 @@ function SearchBar() {
           <label className={style.labelFilterAct} htmlFor="cctividad">
             Filtrar por Actividad:
           </label>
-          <select className={style.selectFilterAct}>
-            <option value="Actividad">Actividad</option>
+          <select
+            className={style.selectFilterAct}
+            id="continent"
+            value={selectedContinent}
+            onChange={handleContinentChange}
+          >
+            <option value="Surf">Surf</option>
+            <option value="Escalar">Escalar</option>
+            <option value="Correr">Correr</option>
+            <option value="Sky">Sky</option>
+            <option value="Snowboard">Snowboard</option>
           </select>
         </div>
         <div>

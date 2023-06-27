@@ -15,6 +15,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(getCountries());
   }, [dispatch]);
+
   let renderedCountries;
 
   if (searchResults.length > 0) {
