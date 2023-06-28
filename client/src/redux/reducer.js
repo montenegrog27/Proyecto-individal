@@ -61,16 +61,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         searchResults: filteredResults,
-        filterContinent:filteredResults
+        filterContinent: filteredResults,
       };
 
     case FILTER_BY_ACTIVITY:
       const activity = action.payload;
-      
+
       //?Agregado a la mañana. Funcionara????
-      const filteredResultsCont = state.filterContinent.filter((country) => {
-        return country.Activities.some((coun) => coun.name === activity);
-      });
+      // const filteredResultsCont = state.filterContinent.filter((country) => {
+      //   return country.Activities.some((coun) => coun.name === activity);
+      // });
 
       const filteredResultsAct = state.actividadesdeApi.filter((country) => {
         return country.Activities.some((coun) => coun.name === activity);
@@ -78,10 +78,10 @@ const rootReducer = (state = initialState, action) => {
       console.log(filteredResultsAct);
       return {
         ...state,
-        searchResults: filteredResultsAct? filteredResultsAct : filteredResultsCont
-
+        searchResults: filteredResultsAct,
+        // ? filteredResultsAct
+        // : filteredResultsCont,
       };
-
 
     case GET_ACTIVITIES:
       return {
@@ -89,10 +89,10 @@ const rootReducer = (state = initialState, action) => {
         actividadesdeApi: action.payload,
       };
 
-      // return {
-      //   ...state,
-      //   searchResults: filteredResultsAct,
-      // };
+    // return {
+    //   ...state,
+    //   searchResults: filteredResultsAct,
+    // };
 
     //! orden alfabetico
 
