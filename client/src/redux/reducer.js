@@ -6,6 +6,7 @@ import {
   BORRAR_FILTROS,
   FILTER_BY_CONTINENT,
   FILTER_BY_ACTIVITY,
+  GET_ACTIVITIES,
 } from "./actions";
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
   filterActivity: [],
   ordenamiento: [],
   noResultsFound: false,
+  actividadesdeApi: "",
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -60,17 +62,22 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         searchResults: filteredResults,
       };
+
     case FILTER_BY_ACTIVITY:
       const activity = action.payload;
-      let filteredResultsAct;
-
-      if (activity === "") {
-        filteredResultsAct = state.countries;
-      } else {
-        filteredResultsAct = state.countries.filter((country) =>
-          country.activities.some((act) => act.name === activity)
-        );
-      }
+      const filteredResultsAct = state.actividadesdeApi.filter((country) => {
+        return country.Activities.some((coun) => coun.name === activity);
+      });
+      console.log(filteredResultsAct);
+      return {
+        ...state,
+        searchResults: filteredResultsAct,
+      };
+    case GET_ACTIVITIES:
+      return {
+        ...state,
+        actividadesdeApi: action.payload,
+      };
 
       return {
         ...state,

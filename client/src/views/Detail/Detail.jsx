@@ -15,10 +15,9 @@ const Detail = () => {
         return resp;
       })
       .then((coun) => {
-        // console.log(coun);
+        console.log("Que onda:", coun);
         if (coun) {
           setCountry(coun[0]);
-          console.log(coun[0]);
         } else {
           window.alert("No hay paises");
         }

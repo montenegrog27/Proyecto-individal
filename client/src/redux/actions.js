@@ -7,6 +7,7 @@ const SORT_POPULATION = "SORT_POPULATION";
 const BORRAR_FILTROS = "BORRAR_FILTROS";
 const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
 const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
+const GET_ACTIVITIES = "GET_ACTIVITIES";
 
 const getCountries = () => {
   return (dispatch) => {
@@ -26,6 +27,26 @@ const getCountries = () => {
       });
   };
 };
+
+const getActivities = () => {
+  return (dispatch) => {
+    axios
+      .get(" http://localhost:3001/countries")
+      .then((response) => {
+        dispatch({
+          type: GET_ACTIVITIES,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: ERROR_COUNTRIES,
+          payload: error.message,
+        });
+      });
+  };
+};
+
 const filterByActivity = (activity) => ({
   type: FILTER_BY_ACTIVITY,
   payload: activity,
@@ -66,6 +87,8 @@ export {
   filterByContinent,
   sortCountriesPopulation,
   filterByActivity,
+  getActivities,
+  GET_ACTIVITIES,
   FILTER_BY_ACTIVITY,
   FILTER_BY_CONTINENT,
   GET_COUNTRIES,

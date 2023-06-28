@@ -49,7 +49,7 @@ router.get("/countries/:id", async (req, res) => {
 // http://localhost:3001/countries?name=Argentina
 
 router.get("/countries", async (req, res) => {
-  const { name } = req.query;
+  const { name, activity } = req.query;
   const lowercaseName = name ? name.toLowerCase() : null;
   const lowercaseActivity = activity ? activity.toLowerCase() : null;
   try {
@@ -62,7 +62,7 @@ router.get("/countries", async (req, res) => {
     res.status(200).json(countries);
   } catch (error) {
     console.log(error);
-    return res.status(400).send("Error wachooo");
+    return res.status(400).send("Error!!!!");
   }
 });
 

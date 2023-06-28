@@ -2,7 +2,7 @@ import style from "./Home.module.css";
 import Cards from "../../components/Cards/Cards";
 import NavBar from "../../components/NavBar/NavBar";
 import { useSelector, useDispatch } from "react-redux";
-import { getCountries } from "../../redux/actions";
+import { getActivities, getCountries } from "../../redux/actions";
 import { useEffect } from "react";
 
 const Home = () => {
@@ -14,10 +14,10 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getCountries());
+    dispatch(getActivities());
   }, [dispatch]);
 
   let renderedCountries;
-
   if (searchResults.length > 0) {
     renderedCountries = searchResults;
   } else if (ordenamiento.length > 0) {
@@ -37,3 +37,14 @@ const Home = () => {
 };
 
 export default Home;
+
+//Nadar
+// Cabalgar
+// Correr
+// Escalar
+// Bucear
+// Ciclismo
+// Surf
+// Esquiar
+// Practicar yoga
+// Bailar

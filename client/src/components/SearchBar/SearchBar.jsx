@@ -1,17 +1,18 @@
 import style from "./SearchBar.module.css";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { searchCountries } from "../../redux/actions"; // Añade la acción para ordenar
+import { filterByActivity, searchCountries } from "../../redux/actions"; // Añade la acción para ordenar
 import { sortCountriesAlf } from "../../redux/actions";
 import { sortCountriesPopulation } from "../../redux/actions";
 import { borrarTodo } from "../../redux/actions";
 import { filterByContinent } from "../../redux/actions";
 import { useSelector } from "react-redux";
-import { filterByActivity } from "../../redux/actions";
+// import { filterByActivity } from "../../redux/actions";
 
 function SearchBar() {
   const dispatch = useDispatch();
   const noencontrado = useSelector((state) => state.noResultsFound);
+  const actis = useSelector((state) => state.actividadesdeApi);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedContinent, setSelectedContinent] = useState("");
   const [OrdenamientoAlf, setOrdenamientoAlf] = useState("");
@@ -120,9 +121,9 @@ function SearchBar() {
           </label>
           <select
             className={style.selectFilterAct}
-            id="continent"
-            value={selectedContinent}
-            onChange={handleContinentChange}
+            id="activity"
+            value={selectedActivity}
+            onChange={handleActivityChange}
           >
             <option value="Surf">Surf</option>
             <option value="Escalar">Escalar</option>
