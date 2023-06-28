@@ -48,7 +48,6 @@ function SearchBar() {
   const handleSortChangePopu = (e) => {
     const sortPopu = e.target.value;
     setOrdenamientoPopu(sortPopu);
-
     dispatch(sortCountriesPopulation(sortPopu));
   };
 

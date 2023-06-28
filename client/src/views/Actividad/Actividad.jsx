@@ -13,8 +13,9 @@ function ActivityForm() {
   });
 
   const [selected, setSelected] = useState();
-
+  
   const TodosCountries = useSelector((state) => state.countries);
+
   const handleChange = (event) => {
     event.preventDefault();
     const property = event.target.name;
