@@ -6,7 +6,7 @@ const Detail = () => {
   const [country, setCountry] = useState([]);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const name = searchParams.get("name");
+  const name = searchParams.get("name"); 
 
   useEffect(() => {
     fetch(`http://localhost:3001/countries?name=${name}`)

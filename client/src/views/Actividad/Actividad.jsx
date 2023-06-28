@@ -39,19 +39,14 @@ function ActivityForm() {
         console.log("Actividad guardada:", data);
         window.alert("La actividad se creó correctamente.");
 
-        setForm({
-          name: "",
-          difficulty: 1,
-          duration: "",
-          season: "",
-          countries: [],
-        });
+
       })
       .catch((error) => {
         console.log("Ocurrió un error al guardar la actividad:", error);
         window.alert("Ocurrió un error al guardar la actividad.");
       });
   }
+  
   const handleChangeSeason = (event) => {
     setForm({ ...form, season: event.target.value });
   };

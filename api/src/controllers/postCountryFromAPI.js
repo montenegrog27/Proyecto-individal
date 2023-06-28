@@ -6,8 +6,8 @@ const URL = "https://rest-countries.up.railway.app/v2/all";
 const postCountryFromAPI = async (req, res) => {
   try {
     const response = await axios.get(URL);
-    const countries = response.data;
 
+    const countries = response.data;
     const countryData = countries.map((ele) => ({
       ID: ele.alpha3Code,
       name: ele.name,
