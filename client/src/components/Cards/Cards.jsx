@@ -84,3 +84,92 @@ function Cards(props) {
 }
 
 export default Cards;
+
+
+// import React, { useState } from "react";
+// import style from "./Cards.module.css";
+// import Card from "../Card/Card";
+
+// function Cards(props) {
+//   const { countries } = props;
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const countriesPerPage = 10;
+
+//   const totalPages = Math.ceil(countries.length / countriesPerPage);
+
+//   const irAPagina = (page) => {
+//     setCurrentPage(page);
+//   };
+
+//   const siguientePag = () => {
+//     if (currentPage < totalPages) {
+//       setCurrentPage(currentPage + 1);
+//     }
+//   };
+
+//   const anteriorPag = () => {
+//     if (currentPage > 1) {
+//       setCurrentPage(currentPage - 1);
+//     }
+//   };
+
+//   const generarNumerosPagina = () => {
+//     const pageNumbers = [];
+
+//     for (let i = 1; i <= totalPages; i++) {
+//       pageNumbers.push(
+//         <button
+//           key={i}
+//           onClick={() => irAPagina(i)}
+//           className={`${style.pageButton} ${
+//             i === currentPage ? style.active : ""
+//           }`}
+//         >
+//           {i}
+//         </button>
+//       );
+//     }
+
+//     return pageNumbers;
+//   };
+
+//   const countriesToShow = countries.slice(
+//     (currentPage - 1) * countriesPerPage,
+//     currentPage * countriesPerPage
+//   );
+
+//   return (
+//     <>
+//       <div className={style.pagination}>
+//         {currentPage > 1 && (
+//           <button onClick={anteriorPag} className={style.prevButton}>
+//             Anterior
+//           </button>
+//         )}
+
+//         {generarNumerosPagina()}
+
+//         {currentPage < totalPages && (
+//           <button onClick={siguientePag} className={style.nextButton}>
+//             Siguiente
+//           </button>
+//         )}
+//       </div>
+
+//       <div className={style.componentes}>
+//         {countriesToShow.map((country) => (
+//           <Card
+//             key={country.ID}
+//             id={country.ID}
+//             name={country.name}
+//             flags={country.flags}
+//             continent={country.continent}
+//           />
+//         ))}
+//       </div>
+//     </>
+//   );
+// }
+
+// export default Cards;
+
