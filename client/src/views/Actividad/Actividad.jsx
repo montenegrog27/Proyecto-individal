@@ -37,6 +37,14 @@ function ActivityForm() {
       .then((data) => {
         console.log("Actividad guardada:", data);
         window.alert("La actividad se creó correctamente.");
+
+        setForm({
+          name: "",
+          difficulty: 1,
+          duration: "",
+          season: "",
+          countries: [],
+        });
       })
       .catch((error) => {
         console.log("Ocurrió un error al guardar la actividad:", error);
@@ -56,10 +64,6 @@ function ActivityForm() {
         ...form,
         countries: [...form.countries, event.target.value],
       });
-      // setErrors(validation({
-      //     ...form,
-      //     countries: [...form.countries, event.target.value]
-      // }))
     }
   };
 
@@ -70,10 +74,6 @@ function ActivityForm() {
         (country) => country !== event.target.value
       ),
     });
-    // setErrors(validation({
-    //     ...form,
-    //     countries: form.countries.filter((country) => country !== event.target.value)
-    // }))
   };
 
   return (
@@ -126,6 +126,7 @@ function ActivityForm() {
             value={form.duration}
             onChange={handleChange}
           ></input>
+          <label className={style.hora}>hs </label>
         </div>
 
         <div>

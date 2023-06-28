@@ -58,6 +58,13 @@
   font-size: large;
   margin-right: 20px;
 }
+
+.hora {
+  color: rgba(255, 255, 255, 0.932);
+  font-size: large;
+  margin-left: 10px;
+}
+
 .durationInput {
   width: 250px;
   height: 30px;

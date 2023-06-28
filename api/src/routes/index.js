@@ -1,7 +1,5 @@
 const { Router } = require("express");
 
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
 const express = require("express");
 const { Op } = require("sequelize");
 const findAllCountries = require("../controllers/findAllCountries");
@@ -51,7 +49,7 @@ router.get("/countries/:id", async (req, res) => {
 router.get("/countries", async (req, res) => {
   const { name, activity } = req.query;
   const lowercaseName = name ? name.toLowerCase() : null;
-  const lowercaseActivity = activity ? activity.toLowerCase() : null;
+  // const lowercaseActivity = activity ? activity.toLowerCase() : null;
   try {
     const countries = lowercaseName
       ? await findCountriesByName({
@@ -97,7 +95,5 @@ router.post("/activities", async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
-
-router.get("/activities", async (req, res) => {});
 
 module.exports = router;

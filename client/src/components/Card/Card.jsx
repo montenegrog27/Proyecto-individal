@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 function Card(props) {
   const { name, flags, continent } = props;
+
   return (
     <div className={style.div}>
       <Link to={`/countries?name=${name}`}>

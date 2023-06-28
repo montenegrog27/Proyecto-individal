@@ -8,22 +8,19 @@ function Cards(props) {
   const countriesPerPage = 10;
   const totalPages = Math.ceil(countries.length / countriesPerPage);
 
-  // Función para cambiar a una página específica
-  const goToPage = (page) => {
+  const irAPagina = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
 
-  // Función para cambiar a la página siguiente
-  const nextPage = () => {
+  const siguientePag = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
     }
   };
 
-  // Función para cambiar a la página anterior
-  const prevPage = () => {
+  const anteriorPag = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
@@ -42,7 +39,7 @@ function Cards(props) {
     <>
       <div className={style.pagination}>
         {currentPage > 1 && (
-          <button onClick={prevPage} className={style.prevButton}>
+          <button onClick={anteriorPag} className={style.prevButton}>
             Anterior
           </button>
         )}
@@ -50,7 +47,7 @@ function Cards(props) {
         {pageNumbers.map((page) => (
           <button
             key={page}
-            onClick={() => goToPage(page)}
+            onClick={() => irAPagina(page)}
             className={`${style.pageButton} ${
               page === currentPage ? style.active : ""
             }`}
@@ -60,7 +57,7 @@ function Cards(props) {
         ))}
 
         {currentPage < totalPages && (
-          <button onClick={nextPage} className={style.nextButton}>
+          <button onClick={siguientePag} className={style.nextButton}>
             Siguiente
           </button>
         )}
